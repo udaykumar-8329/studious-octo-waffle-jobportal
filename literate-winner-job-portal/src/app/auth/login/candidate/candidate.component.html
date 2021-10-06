@@ -1,0 +1,32 @@
+<div style="align-content: center; display: flex;">
+  <h2 *ngIf="!isRecruiters.checked">Candidate Login</h2>
+  <h2 *ngIf="isRecruiters.checked">Recruiter Login</h2>
+</div>
+<form [formGroup]="loginForm" (submit)="onSubmit()">
+
+  <div>
+    <mat-form-field>
+      <mat-label>email id</mat-label>
+      <input matInput formControlName="email" placeholder="Email Id" />
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <input matInput formControlName="password" type="password" placeholder="Password" />
+    </mat-form-field>
+  </div>
+
+  <div>
+      <mat-slide-toggle #isRecruiters formControlName="isRecruiter" >Login as Recruiter</mat-slide-toggle>
+  </div>
+
+  <div>
+    <p>Not registered yet? <a (click)="goToRegister()">Register</a></p>
+  </div>
+
+  <div style="align-items: flex-end; display: block;">
+    <button mat-raised-button [disabled]="!loginForm.valid" type="submit" color="primary">Login</button> &nbsp;
+  </div>
+
+</form>

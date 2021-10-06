@@ -1,0 +1,45 @@
+  <div *ngIf="!loginStatus" class="topDiv">
+    <p>
+      Reload the page after logging in
+    </p>
+  </div>
+  <div *ngFor="let job of Jobs">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <div class="marginDiv">Company Name : {{ job.companyName }}</div>
+        <div class="marginDiv">Role : {{ job.role }}</div>
+      </mat-expansion-panel-header>
+      <mat-card>
+        <mat-card-content>
+          <div>
+            <p>Code : {{ job.code }}</p>
+        </div>
+
+        <div>
+          <p>Job Description : {{ job.jobDescription }}</p>
+        </div>
+        <div>
+          <p>Minimum Salary : {{ job.minSalary }}</p>
+        </div>
+      </mat-card-content>
+      <div *ngIf="role=='Candidate'">
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="applyFor(job._id, job.role, job.companyName)" >Apply</button>
+        </mat-card-actions>
+      </div>
+      <div *ngIf="role=='Recruiter'">
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="ViewApplicants(job._id, job.role)">
+            View Applicants
+          </button>
+        </mat-card-actions>
+      </div>
+      </mat-card>
+  </mat-expansion-panel>
+  </div>
+
+<div class="rightCorner" *ngIf="role=='Recruiter'">
+  <button mat-fab (click)="openAddJobDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

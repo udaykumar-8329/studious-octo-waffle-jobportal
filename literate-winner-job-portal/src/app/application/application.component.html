@@ -1,0 +1,73 @@
+<div>
+  <h3>Applying for {{data.companyName}} for the position of {{data.role}}</h3>
+</div>
+<div class="fileUpload">
+  <!-- <input
+  id="upload"
+    type="file"
+    name="image"
+    (change)="selectImage($event)"
+    accept="application/pdf"
+    size="3mb" hidden
+  />
+  <label for="upload">Choose file</label>
+
+  <span class="example-spacer">{{filePath}}</span>
+  <button (click)="onResumeSubmit()">Upload</button> -->
+
+</div>
+<div style="align-content: center; display: flex">
+  <!-- <h2 *ngIf="isRecruiters.checked">Recruiter Registration</h2>
+  <h2 *ngIf="!isRecruiters.checked">Candidate Registration</h2> -->
+</div>
+<form [formGroup]="candidateApplicationForm" (submit)="submitApplication()">
+  <div>
+    <mat-form-field>
+      <input matInput formControlName="firstName" placeholder="First Name" />
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <input matInput formControlName="lastName" placeholder="Last Name" />
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <input
+        matInput
+        formControlName="dateOfBirth"
+        type="date"
+        placeholder="Date Of Birth"
+      />
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>email id</mat-label>
+      <input matInput formControlName="email" placeholder="Email Id" />
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Mobile Number</mat-label>
+      <input
+        matInput
+        formControlName="mobileNumber"
+        placeholder="Mobile Number"
+      />
+    </mat-form-field>
+  </div>
+
+  <div style="align-items: flex-end; display: block">
+    <button
+      mat-raised-button
+      [disabled]="!candidateApplicationForm.valid"
+      type="submit"
+      color="primary"> Submit Application </button>
+    &nbsp;
+  </div>
+</form>

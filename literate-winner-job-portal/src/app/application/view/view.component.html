@@ -1,0 +1,29 @@
+<div *ngIf="role=='Recruiter'">
+  <h3 style="margin: 20px;">Applications for the role of <b style="color: blue;">{{role}}</b></h3>
+</div>
+<mat-accordion>
+  <div *ngFor="let application of applications">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <p>First Name: {{application.firstName}}</p>
+        <p>Email Id: {{application.email}}</p>
+      </mat-expansion-panel-header>
+      <p>Last Name: {{application.lastName}}</p>
+      <p>Date of Birth: {{application.dateOfBirth}}</p>
+      <p>Job Id: {{application.jobId}}</p>
+        <!-- <p>Mobile Number: {{application.mobileNumber}}</p> -->
+        <!-- <p>Resume:
+          <button mat-raised-button [disabled]="application.resume" (click)="download(application.resume)" color="primary">Download</button>
+           {{application.resume}}
+          </p>
+          <p *ngIf="!application.resume">
+              Resume not uploaded
+          </p> -->
+
+    </mat-expansion-panel>
+  </div>
+</mat-accordion>
+
+<div *ngIf="applications.length==0">
+  <h3 style="font-weight: 800; font-size: larger;">No Applications available</h3>
+</div>

@@ -1,0 +1,99 @@
+<!-- <mat-tab-group> -->
+  <!-- <mat-tab label="Candidate"> -->
+    <div style="align-content: center; display: flex">
+      <h2 *ngIf="isRecruiters.checked">Recruiter Registration</h2>
+      <h2 *ngIf="!isRecruiters.checked">Candidate Registration</h2>
+    </div>
+    <form
+      [formGroup]="candidateRegistrationForm"
+      (submit)="register()"
+    >
+      <div>
+        <mat-form-field>
+          <input
+            matInput
+            formControlName="firstName"
+            placeholder="First Name"
+          />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <input matInput formControlName="lastName" placeholder="Last Name" />
+        </mat-form-field>
+        <!-- <mat-error *ngIf="errors.rollNumberError"> Roll Number already exists</mat-error> -->
+      </div>
+
+      <div>
+        <mat-form-field>
+          <input
+            matInput
+            formControlName="dateOfBirth"
+            type="date"
+            placeholder="Date Of Birth"
+          />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>email id</mat-label>
+          <input matInput formControlName="email" placeholder="Email Id" />
+        </mat-form-field>
+        <!-- <mat-error *ngIf="errors.deptError">Department not found</mat-error> -->
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Mobile Number</mat-label>
+          <input
+            matInput
+            formControlName="mobileNumber"
+            placeholder="Mobile Number"
+          />
+        </mat-form-field>
+        <!-- <mat-error *ngIf="errors.yearError"> Year not found</mat-error> -->
+      </div>
+
+      <div>
+        <mat-form-field>
+          <input
+            matInput
+            formControlName="password"
+            type="password"
+            placeholder="Password"
+          />
+        </mat-form-field>
+      </div>
+
+      <div *ngIf=isRecruiters.checked>
+        <mat-form-field>
+          <input
+            matInput
+            formControlName="companyName"
+            placeholder="Company Name"
+          />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-slide-toggle #isRecruiters formControlName="isRecruiter">Register as Recruiter</mat-slide-toggle>
+      </div>
+
+      <div>
+        <p>Already registered? <a (click)="goToLogin()">Login</a></p>
+      </div>
+
+      <div style="align-items: flex-end; display: block">
+        <button
+          mat-raised-button
+          [disabled]="!candidateRegistrationForm.valid"
+          type="submit"
+          color="primary"
+        >
+          Register
+        </button>
+        &nbsp;
+      </div>
+    </form>

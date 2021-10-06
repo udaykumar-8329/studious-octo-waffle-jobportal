@@ -1,0 +1,64 @@
+<div>
+  <mat-toolbar color="primary">
+    <div fxShow="true" fxHide.gt-sm="true">
+      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+    </div>
+
+    <a class="companyName">
+      <span>Domaincer - Job Portal</span>
+    </a>
+    <span class="example-spacer"></span>
+    <button mat-button (click)="goTo('home')">Home</button>
+    <div fxShow="true" fxHide.lt-md="true" *ngIf="!loginStatus" >
+      <button mat-button (click)="openLoginDialog()&&sidenav.toggle()">Login</button>
+      <button mat-button (click)="openRegistrationDialog()">Register</button>
+    </div>
+    <div fxShow="true" fxHide.lt-md="true" *ngIf="loginStatus&&(loginRole==='Candidate')">
+      <button mat-button (click)="goTo('jobs')" >Jobs</button>
+      <button mat-button (click)="goTo('applications')" >My Applications</button>
+      <button mat-button (click)="logout()">Logout</button>
+    </div>
+    <div fxShow="true" fxHide.lt-md="true" *ngIf="loginStatus&&(loginRole==='Recruiter')">
+      <button mat-button (click)="goTo('jobs')">Jobs Posted</button>
+      <button mat-button (click)="logout()">Logout</button>
+    </div>
+  </mat-toolbar>
+  <mat-sidenav-container fxFlexFill class="example-container">
+    <mat-sidenav
+      color="primary"
+      #sidenav
+      fxLayout="column"
+      mode="over"
+      opened="false"
+      fxHide.gt-sm="true">
+    <button mat-button (click)="goTo('home')">Home</button>
+    <div fxShow="true" *ngIf="!loginStatus" >
+      <button mat-button (click)="openLoginDialog()&&sidenav.toggle()">Login</button>
+      <button mat-button (click)="openRegistrationDialog()">Register</button>
+    </div>
+    <div fxShow="true" *ngIf="loginStatus&&(loginRole==='Candidate')">
+      <button mat-button (click)="goTo('jobs')" >Jobs</button>
+      <button mat-button (click)="goTo('applications')" >My Applications</button>
+      <button mat-button (click)="logout()">Logout</button>
+    </div>
+    <div fxShow="true" *ngIf="loginStatus&&(loginRole==='Recruiter')">
+      <button mat-button (click)="goTo('jobs')">Jobs Posted</button>
+      <button mat-button (click)="logout()">Logout</button>
+    </div>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+      <ng-http-loader
+        [backdrop]="false"
+        [backgroundColor]="'#ff0000'"
+        [debounceDelay]="100"
+        [extraDuration]="800"
+        [minDuration]="300"
+        [opacity]="1.0"
+        [spinner]="spinkit.skDoubleBounce"
+      >
+      </ng-http-loader>
+      <!-- <app-landing-page></app-landing-page> -->
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
